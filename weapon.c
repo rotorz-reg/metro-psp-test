@@ -46,7 +46,10 @@ static Vertex weapon_body[] = {
 	BOX(-0.15f, -0.11f, -0.02f, 0.08f, -0.13f, 0.06f, 0xff505558),
 	BOX(-0.045f, 0.045f, 0.16f, 0.27f, -0.10f, -0.04f, 0xff24282c),
 	BOX(-0.055f, 0.055f, 0.25f, 0.34f, -0.88f, -0.80f, 0xff303336),
-	BOX(-0.035f, 0.035f, 0.23f, 0.42f, -0.07f, -0.02f, 0xff303336)
+	BOX(-0.035f, 0.035f, 0.23f, 0.42f, -0.07f, -0.02f, 0xff303336),
+	BOX(-0.07f, -0.025f, 0.16f, 0.26f, 0.10f, 0.17f, 0xff202427),
+	BOX(0.025f, 0.07f, 0.16f, 0.26f, 0.10f, 0.17f, 0xff202427),
+	BOX(-0.025f, 0.025f, 0.19f, 0.27f, -0.83f, -0.78f, 0xff202427)
 };
 
 static Vertex weapon_wood[] = {
@@ -56,7 +59,9 @@ static Vertex weapon_wood[] = {
 	BOX(-0.085f, 0.085f, -0.34f, -0.08f, 0.13f, 0.29f, 0xffa66c3b),
 	BOX(-0.085f, 0.085f, -0.19f, -0.12f, -0.11f, -0.04f, 0xffa66c3b),
 	BOX(-0.09f, 0.09f, -0.34f, -0.25f, -0.19f, -0.12f, 0xff9e6335),
-	BOX(-0.095f, 0.095f, -0.48f, -0.39f, -0.25f, -0.17f, 0xff9e6335)
+	BOX(-0.095f, 0.095f, -0.48f, -0.39f, -0.25f, -0.17f, 0xff9e6335),
+	BOX(-0.035f, 0.035f, 0.17f, 0.25f, 0.60f, 0.67f, 0xff24282b),
+	BOX(-0.03f, 0.03f, 0.16f, 0.21f, -0.98f, -0.91f, 0xff202427)
 };
 
 static Vertex weapon_magazine[] = {
@@ -72,7 +77,9 @@ static Vertex pistol_model[] = {
 	BOX(-0.08f, 0.08f, 0.13f, 0.20f, -0.52f, -0.16f, 0xff24282c),
 	BOX(-0.055f, 0.055f, 0.08f, 0.15f, -0.78f, -0.54f, 0xff565b5e),
 	BOX(-0.085f, 0.085f, -0.04f, 0.04f, -0.12f, 0.06f, 0xff262a2d),
-	BOX(-0.055f, 0.055f, -0.34f, -0.06f, -0.03f, 0.07f, 0xff292d30)
+	BOX(-0.055f, 0.055f, -0.34f, -0.06f, -0.03f, 0.07f, 0xff292d30),
+	BOX(-0.06f, -0.025f, 0.13f, 0.19f, 0.10f, 0.14f, 0xff171b1e),
+	BOX(0.025f, 0.06f, 0.13f, 0.19f, 0.10f, 0.14f, 0xff171b1e)
 };
 
 static Vertex shotgun_model[] = {
@@ -81,7 +88,9 @@ static Vertex shotgun_model[] = {
 	BOX(-0.07f, 0.07f, 0.00f, 0.11f, -1.27f, -0.23f, 0xff62676a),
 	BOX(-0.09f, 0.09f, -0.12f, -0.01f, -0.86f, -0.31f, 0xff34383b),
 	BOX(-0.08f, 0.08f, -0.30f, -0.15f, -0.21f, 0.16f, 0xff754b2d),
-	BOX(-0.07f, 0.07f, -0.41f, -0.28f, -0.29f, -0.18f, 0xff70472b)
+	BOX(-0.07f, 0.07f, -0.41f, -0.28f, -0.29f, -0.18f, 0xff70472b),
+	BOX(-0.035f, 0.035f, 0.14f, 0.23f, -0.17f, -0.12f, 0xff25292d),
+	BOX(-0.06f, 0.06f, -0.04f, 0.00f, -0.42f, -0.20f, 0xff23272a)
 };
 
 static Vertex sniper_model[] = {
@@ -90,7 +99,20 @@ static Vertex sniper_model[] = {
 	BOX(-0.10f, 0.10f, -0.31f, -0.20f, -0.18f, 0.18f, 0xff69452b),
 	BOX(-0.045f, 0.045f, 0.13f, 0.29f, -0.18f, 0.04f, 0xff25292d),
 	BOX(-0.10f, 0.10f, 0.27f, 0.35f, -0.16f, 0.02f, 0xff34383b),
-	BOX(-0.06f, 0.06f, 0.31f, 0.38f, -0.145f, 0.005f, 0xff454a4e)
+	BOX(-0.06f, 0.06f, 0.31f, 0.38f, -0.145f, 0.005f, 0xff454a4e),
+	BOX(-0.03f, 0.03f, 0.15f, 0.26f, -0.23f, -0.18f, 0xff222629)
+};
+
+static Vertex pistol_magazine[] = {
+	BOX(-0.05f, 0.05f, -0.40f, -0.08f, -0.08f, 0.08f, 0xff34393d)
+};
+
+static Vertex shotgun_magazine[] = {
+	BOX(-0.035f, 0.035f, -0.48f, -0.10f, -0.09f, 0.09f, 0xffa3442e)
+};
+
+static Vertex sniper_magazine[] = {
+	BOX(-0.065f, 0.065f, -0.42f, -0.08f, -0.10f, 0.10f, 0xff353a3e)
 };
 
 static Vertex right_hand[] = {
@@ -111,11 +133,19 @@ static TexturedVertex textured_pistol[sizeof(pistol_model) / sizeof(Vertex)];
 static TexturedVertex textured_shotgun[sizeof(shotgun_model) / sizeof(Vertex)];
 static TexturedVertex textured_sniper[sizeof(sniper_model) / sizeof(Vertex)];
 static TexturedVertex textured_right_hand[sizeof(right_hand) / sizeof(Vertex)];
-static TexturedVertex textured_arm[96];
+static TexturedVertex textured_arm[48];
+static TexturedVertex textured_left_arm[48];
 static unsigned int arm_vertex_count;
+static unsigned int left_arm_vertex_count;
 static TexturedVertex textured_flash[sizeof(muzzle_flash) / sizeof(Vertex)];
 static Vertex left_hand[sizeof(right_hand) / sizeof(Vertex)];
 static TexturedVertex textured_left_hand[sizeof(right_hand) / sizeof(Vertex)];
+static TexturedVertex textured_pistol_magazine[
+	sizeof(pistol_magazine) / sizeof(Vertex)];
+static TexturedVertex textured_shotgun_magazine[
+	sizeof(shotgun_magazine) / sizeof(Vertex)];
+static TexturedVertex textured_sniper_magazine[
+	sizeof(sniper_magazine) / sizeof(Vertex)];
 
 static void prepare_vertices(const Vertex *source, TexturedVertex *destination,
 	unsigned int count, float scale, float offset_x, float offset_y, float offset_z)
@@ -214,12 +244,14 @@ static void bind_vertex_texture(const unsigned int textures[TEXTURE_COUNT][TEXTU
 void weapon_init(void)
 {
 	unsigned int count = 0;
+	unsigned int left_count = 0;
 	unsigned int i;
-	append_arm(-0.90f, -1.12f, -0.50f, 0.02f, -0.34f, -1.62f,
-		0.19f, 0.12f, textured_arm, &count);
-	append_arm(0.98f, -1.14f, -0.48f, 0.44f, -0.66f, -1.00f,
+	append_arm(-0.90f, -1.12f, -0.50f, -0.08f, -0.83f, -1.04f,
+		0.19f, 0.12f, textured_left_arm, &left_count);
+	append_arm(0.98f, -1.14f, -0.48f, 0.40f, -0.76f, -1.48f,
 		0.19f, 0.12f, textured_arm, &count);
 	arm_vertex_count = count;
+	left_arm_vertex_count = left_count;
 	prepare_vertices(weapon_body, textured_body,
 		sizeof(weapon_body) / sizeof(Vertex), 100.0f, 0.0f, 0.0f, 0.0f);
 	prepare_vertices(weapon_wood, textured_wood,
@@ -232,6 +264,12 @@ void weapon_init(void)
 		sizeof(shotgun_model) / sizeof(Vertex), 100.0f, 0.0f, 0.0f, 0.0f);
 	prepare_vertices(sniper_model, textured_sniper,
 		sizeof(sniper_model) / sizeof(Vertex), 100.0f, 0.0f, 0.0f, 0.0f);
+	prepare_vertices(pistol_magazine, textured_pistol_magazine,
+		sizeof(pistol_magazine) / sizeof(Vertex), 24.0f, 0.0f, 0.0f, 0.0f);
+	prepare_vertices(shotgun_magazine, textured_shotgun_magazine,
+		sizeof(shotgun_magazine) / sizeof(Vertex), 24.0f, 0.0f, 0.0f, 0.0f);
+	prepare_vertices(sniper_magazine, textured_sniper_magazine,
+		sizeof(sniper_magazine) / sizeof(Vertex), 24.0f, 0.0f, 0.0f, 0.0f);
 	prepare_vertices(right_hand, textured_right_hand,
 		sizeof(right_hand) / sizeof(Vertex), 24.0f, 0.0f, 0.0f, 0.0f);
 	prepare_vertices(muzzle_flash, textured_flash,
@@ -255,14 +293,57 @@ void weapon_draw(int weapon_type, int equipped, float walk_phase, float recoil,
 {
 	ScePspFVector3 translation;
 	float reload_progress = (float)(60 - reload_frames) / 60.0f;
-	float reload_dip = reload_frames > 0 ?
-		sinf(reload_progress * 3.14159265f) : 0.0f;
-	float magazine_drop = reload_frames > 0 ?
-		(1.0f - fabsf(reload_progress * 2.0f - 1.0f)) * 0.34f : 0.0f;
-	float magazine_rotation = 0.0f;
+	float phase_amount = 0.0f;
+	float weapon_tilt = 0.0f;
+	float magazine_drop = 0.0f;
+	float left_hand_x = 0.0f, left_hand_y = 0.0f, left_hand_z = 0.0f;
+	float left_arm_x = 0.0f, left_arm_y = 0.0f, left_arm_z = 0.0f;
+	int reload_phase = -1;
 
 	if (!equipped) {
 		return;
+	}
+	if (reload_progress < 0.0f) {
+		reload_progress = 0.0f;
+	}
+	if (reload_progress > 1.0f) {
+		reload_progress = 1.0f;
+	}
+	if (reload_frames > 0) {
+		if (reload_progress < 0.25f) {
+			reload_phase = 0;
+			phase_amount = reload_progress / 0.25f;
+			weapon_tilt = 0.20f * phase_amount;
+		} else if (reload_progress < 0.50f) {
+			reload_phase = 1;
+			phase_amount = (reload_progress - 0.25f) / 0.25f;
+			weapon_tilt = 0.20f;
+			magazine_drop = 0.78f * phase_amount;
+			left_hand_y = -0.46f * phase_amount;
+			left_hand_z = -0.12f * phase_amount;
+			left_arm_y = -0.28f * phase_amount;
+			left_arm_z = -0.08f * phase_amount;
+		} else if (reload_progress < 0.75f) {
+			reload_phase = 2;
+			phase_amount = (reload_progress - 0.50f) / 0.25f;
+			weapon_tilt = 0.20f * (1.0f - phase_amount * 0.65f);
+			magazine_drop = 0.78f * (1.0f - phase_amount);
+			left_hand_y = -0.46f * (1.0f - phase_amount);
+			left_hand_z = -0.12f * (1.0f - phase_amount);
+			left_arm_y = -0.28f * (1.0f - phase_amount);
+			left_arm_z = -0.08f * (1.0f - phase_amount);
+		} else {
+			reload_phase = 3;
+			phase_amount = (reload_progress - 0.75f) / 0.25f;
+			weapon_tilt = 0.07f * (1.0f - phase_amount);
+			left_hand_x = 0.20f * sinf(phase_amount * 1.5707963f);
+			left_hand_y = 0.10f * sinf(phase_amount * 1.5707963f);
+			left_hand_z = -0.18f * sinf(phase_amount * 1.5707963f);
+			left_arm_x = 0.16f * sinf(phase_amount * 1.5707963f);
+			left_arm_y = 0.08f * sinf(phase_amount * 1.5707963f);
+			left_arm_z = -0.10f * sinf(phase_amount * 1.5707963f);
+			recoil += sinf(phase_amount * 3.14159265f) * 0.18f;
+		}
 	}
 
 	sceGuDisable(GU_DEPTH_TEST);
@@ -274,16 +355,25 @@ void weapon_draw(int weapon_type, int equipped, float walk_phase, float recoil,
 	sceGumPushMatrix();
 	sceGumLoadIdentity();
 	translation.x = sinf(walk_phase * 0.5f) * 0.018f;
-	translation.y = sinf(walk_phase) * 0.022f - reload_dip * 0.20f;
+	translation.y = sinf(walk_phase) * 0.022f;
 	translation.z = recoil * 0.035f;
 	sceGumTranslate(&translation);
-	sceGumRotateX(recoil * -0.035f + reload_dip * 0.12f);
+	sceGumRotateX(recoil * -0.035f);
 	bind_vertex_texture(textures, TEXTURE_FABRIC, arm_vertex_count, textured_arm);
+	sceGumPushMatrix();
+	translation.x = left_arm_x;
+	translation.y = left_arm_y;
+	translation.z = left_arm_z;
+	sceGumTranslate(&translation);
+	bind_vertex_texture(textures, TEXTURE_FABRIC,
+		left_arm_vertex_count, textured_left_arm);
+	sceGumPopMatrix();
 
 	translation.x = 0.30f;
 	translation.y = -0.45f;
 	translation.z = -1.30f;
 	sceGumTranslate(&translation);
+	sceGumRotateZ(weapon_tilt);
 	if (weapon_type == WEAPON_PISTOL) {
 		bind_vertex_texture(textures, TEXTURE_WEAPON,
 			sizeof(textured_pistol) / sizeof(TexturedVertex), textured_pistol);
@@ -300,34 +390,46 @@ void weapon_draw(int weapon_type, int equipped, float walk_phase, float recoil,
 			sizeof(textured_wood) / sizeof(TexturedVertex), textured_wood);
 	}
 
-	if (weapon_type == WEAPON_RIFLE && reload_frames > 0) {
-		if (reload_progress < 0.45f) {
-			magazine_rotation = -0.85f * sinf(reload_progress / 0.45f * 1.5707963f);
-		} else if (reload_progress > 0.58f) {
-			magazine_rotation = 0.45f * sinf(
-				(reload_progress - 0.58f) / 0.42f * 1.5707963f);
-		}
-	}
 	sceGumPushMatrix();
 	translation.x = 0.0f;
 	translation.y = -0.13f;
 	translation.z = 0.10f;
 	sceGumTranslate(&translation);
-	sceGumRotateX(magazine_rotation);
-	translation.y = 0.13f - magazine_drop;
-	translation.z = -0.10f;
+	translation.x = 0.0f;
+	translation.y = -magazine_drop;
+	translation.z = 0.0f;
 	sceGumTranslate(&translation);
-	if (weapon_type == WEAPON_RIFLE && !(reload_frames > 0 && reload_progress >= 0.45f &&
-		reload_progress <= 0.58f)) {
-		bind_vertex_texture(textures, TEXTURE_WEAPON,
-			sizeof(textured_magazine) / sizeof(TexturedVertex), textured_magazine);
+	if (!(reload_phase == 1 && phase_amount > 0.94f)) {
+		if (weapon_type == WEAPON_PISTOL) {
+			bind_vertex_texture(textures, TEXTURE_WEAPON,
+				sizeof(textured_pistol_magazine) / sizeof(TexturedVertex),
+				textured_pistol_magazine);
+		} else if (weapon_type == WEAPON_SHOTGUN) {
+			bind_vertex_texture(textures, TEXTURE_WEAPON,
+				sizeof(textured_shotgun_magazine) / sizeof(TexturedVertex),
+				textured_shotgun_magazine);
+		} else if (weapon_type == WEAPON_SNIPER) {
+			bind_vertex_texture(textures, TEXTURE_WEAPON,
+				sizeof(textured_sniper_magazine) / sizeof(TexturedVertex),
+				textured_sniper_magazine);
+		} else {
+			bind_vertex_texture(textures, TEXTURE_WEAPON,
+				sizeof(textured_magazine) / sizeof(TexturedVertex),
+				textured_magazine);
+		}
 	}
 	sceGumPopMatrix();
 
 	bind_vertex_texture(textures, TEXTURE_FABRIC,
 		sizeof(textured_right_hand) / sizeof(TexturedVertex), textured_right_hand);
+	sceGumPushMatrix();
+	translation.x = left_hand_x;
+	translation.y = left_hand_y;
+	translation.z = left_hand_z;
+	sceGumTranslate(&translation);
 	bind_vertex_texture(textures, TEXTURE_FABRIC,
 		sizeof(textured_left_hand) / sizeof(TexturedVertex), textured_left_hand);
+	sceGumPopMatrix();
 	if (flash_frames > 0) {
 		sceGuEnable(GU_BLEND);
 		sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);

@@ -183,6 +183,18 @@ void companion_init(void)
 		0.075f, 0.07f, 0xff3f4938);
 	append_limb(0.16f, -0.46f, 0.03f, 0.18f, -0.78f, 0.16f,
 		0.075f, 0.07f, 0xff3f4938);
+	append_tapered_prism(-0.18f, 0.13f, -0.88f, -0.70f,
+		0.12f, 0.085f, 0.20f, 0xff242a27);
+	append_tapered_prism(0.18f, 0.13f, -0.88f, -0.70f,
+		0.12f, 0.085f, 0.20f, 0xff242a27);
+	append_tapered_prism(-0.32f, 0.02f, 0.78f, 1.03f,
+		0.20f, 0.15f, 0.19f, 0xff59664a);
+	append_tapered_prism(0.32f, 0.02f, 0.78f, 1.03f,
+		0.20f, 0.15f, 0.19f, 0xff59664a);
+	append_tapered_prism(-0.20f, 0.205f, 0.56f, 0.78f,
+		0.09f, 0.075f, 0.065f, 0xff4a5542);
+	append_tapered_prism(0.20f, 0.205f, 0.56f, 0.78f,
+		0.09f, 0.075f, 0.065f, 0xff4a5542);
 
 	append_cylinder_y(0.0f, 0.0f, 1.02f, 1.32f, 0.15f, 0.17f,
 		0xff46513e);
@@ -192,8 +204,14 @@ void companion_init(void)
 		0.18f, 0.16f, 0.20f, 0xff252c29);
 	append_tapered_prism(0.0f, 0.0f, 1.25f, 1.31f,
 		0.06f, 0.06f, 0.24f, 0xff59634d);
+	append_tapered_prism(0.0f, 0.22f, 1.35f, 1.42f,
+		0.16f, 0.15f, 0.035f, 0xff202725);
+	append_tapered_prism(0.0f, 0.20f, 1.18f, 1.28f,
+		0.08f, 0.06f, 0.045f, 0xff252b29);
 	append_filter(-0.12f, 1.22f, 0.17f, 0.085f);
 	append_filter(0.12f, 1.22f, 0.17f, 0.085f);
+	append_limb(-0.05f, 1.18f, 0.265f, 0.05f, 1.18f, 0.285f,
+		0.012f, 0.012f, 0xffaeb3a4);
 
 	append_limb(-0.13f, 0.42f, 0.28f, 0.12f, 0.42f, 0.57f,
 		0.045f, 0.035f, 0xff353a38);

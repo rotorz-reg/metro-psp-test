@@ -31,7 +31,7 @@ typedef struct {
 #define HALL_COLUMN_VERTEX_COUNT (4 * 36)
 #define INTRO_SECTION_COUNT 14
 #define INTRO_SECTION_VERTEX_COUNT 24
-#define INTRO_PARTITION_COUNT 6
+#define INTRO_PARTITION_COUNT 11
 #define BARREL_SEGMENTS 12
 #define BARREL_VERTEX_COUNT (BARREL_SEGMENTS * 5 * 6)
 #define MUTANT_VERTEX_CAPACITY 8192
@@ -232,26 +232,40 @@ static Vertex __attribute__((aligned(16))) intro_partition_verts[] = {
 	BOX(-4.5f, -2.5f, -1.5f, 2.4f, 35.9f, 36.1f, 0xff686868),
 	BOX(-0.5f, 4.5f, -1.5f, 2.4f, 35.9f, 36.1f, 0xff686868),
 	BOX(-2.5f, -0.5f, 1.55f, 2.4f, 35.9f, 36.1f, 0xff777777),
-	BOX(-5.0f, -1.25f, -1.5f, 2.4f, 23.9f, 24.1f, 0xff686868),
-	BOX(1.25f, 5.0f, -1.5f, 2.4f, 23.9f, 24.1f, 0xff686868),
-	BOX(-1.25f, 1.25f, 1.55f, 2.4f, 23.9f, 24.1f, 0xff777777),
+	BOX(-5.0f, 2.8f, -1.5f, 2.4f, 23.9f, 24.1f, 0xff686868),
+	BOX(4.1f, 5.0f, -1.5f, 2.4f, 23.9f, 24.1f, 0xff686868),
+	BOX(2.8f, 4.1f, 1.55f, 2.4f, 23.9f, 24.1f, 0xff777777),
+	BOX(-4.5f, 3.0f, -1.5f, 2.4f, 29.9f, 30.1f, 0xff686868),
+	BOX(4.5f, 5.0f, -1.5f, 2.4f, 29.9f, 30.1f, 0xff686868),
+	BOX(3.0f, 4.5f, 1.55f, 2.4f, 29.9f, 30.1f, 0xff777777),
+	BOX(-2.6f, -2.4f, -1.5f, 2.4f, 33.0f, 34.65f, 0xff686868),
+	BOX(-2.6f, -2.4f, -1.5f, 2.4f, 35.35f, 36.0f, 0xff686868),
 };
 
 static Vertex __attribute__((aligned(16))) intro_wood_verts[] = {
 	BOX(-2.20f, -0.75f, -1.36f, -1.12f, 50.2f, 53.0f, 0xff81552f),
 	BOX(-2.22f, -0.72f, -1.11f, -0.88f, 50.2f, 53.0f, 0xffa77e55),
+	BOX(-2.10f, -1.42f, -0.86f, -0.78f, 50.3f, 51.1f, 0xffc7b9a2),
 	BOX(0.55f, 1.85f, -0.72f, -0.58f, 50.0f, 52.3f, 0xff80512c),
 	BOX(0.65f, 0.82f, -1.50f, -0.70f, 50.1f, 50.3f, 0xff654328),
 	BOX(1.58f, 1.75f, -1.50f, -0.70f, 50.1f, 50.3f, 0xff654328),
 	BOX(-2.28f, -2.05f, -1.32f, 0.25f, 48.0f, 48.15f, 0xff895d38),
 	BOX(-2.35f, -1.98f, -1.30f, -1.10f, 47.96f, 48.19f, 0xffa77c4a),
 	BOX(-2.34f, -2.12f, -0.08f, 0.02f, 48.0f, 48.14f, 0xff784c2c),
+	BOX(-2.35f, -1.98f, -1.42f, 0.35f, 46.7f, 46.9f, 0xff485057),
+	BOX(-2.35f, -1.98f, 0.35f, 0.50f, 46.7f, 46.9f, 0xff89908f),
+	BOX(1.00f, 1.38f, -0.50f, -0.38f, 48.0f, 48.5f, 0xff34383b),
+	BOX(1.08f, 1.30f, -0.38f, -0.30f, 48.05f, 48.45f, 0xff222629),
+	BOX(-2.35f, -2.15f, 0.40f, 1.55f, 49.4f, 50.2f, 0xff8b372d),
+	BOX(-2.35f, -2.15f, 0.40f, 1.55f, 51.1f, 51.9f, 0xff8b372d),
+	BOX(-2.36f, -2.13f, 0.98f, 1.02f, 49.4f, 50.2f, 0xffd0b886),
+	BOX(-2.36f, -2.13f, 0.98f, 1.02f, 51.1f, 51.9f, 0xffd0b886),
 	BOX(-4.0f, -0.8f, -0.75f, -0.58f, 31.0f, 32.2f, 0xff76502e),
 	BOX(-3.8f, -3.55f, -1.50f, -0.72f, 31.1f, 31.35f, 0xff67452b),
 	BOX(-1.25f, -1.0f, -1.50f, -0.72f, 31.1f, 31.35f, 0xff67452b),
-	BOX(0.8f, 4.0f, -0.75f, -0.58f, 27.0f, 28.2f, 0xff76502e),
-	BOX(1.0f, 1.25f, -1.50f, -0.72f, 27.1f, 27.35f, 0xff67452b),
-	BOX(3.55f, 3.8f, -1.50f, -0.72f, 27.1f, 27.35f, 0xff67452b),
+	BOX(-4.0f, -0.8f, -0.75f, -0.58f, 27.0f, 28.2f, 0xff76502e),
+	BOX(-3.8f, -3.55f, -1.50f, -0.72f, 27.1f, 27.35f, 0xff67452b),
+	BOX(-1.25f, -1.0f, -1.50f, -0.72f, 27.1f, 27.35f, 0xff67452b),
 	BOX(-4.0f, 4.0f, -0.68f, -0.50f, 17.2f, 19.0f, 0xff79512f),
 	BOX(-3.85f, -3.60f, -1.50f, -0.68f, 17.4f, 17.7f, 0xff634127),
 	BOX(3.60f, 3.85f, -1.50f, -0.68f, 17.4f, 17.7f, 0xff634127),
@@ -286,6 +300,12 @@ static Vertex __attribute__((aligned(16))) intro_metal_verts[] = {
 	BOX(0.75f, 0.85f, -1.50f, 0.08f, 13.40f, 13.48f, 0xff484d50),
 	BOX(2.75f, 3.75f, 0.05f, 1.20f, 13.35f, 13.52f, 0xff62676a),
 	BOX(2.95f, 3.05f, -1.50f, 0.08f, 13.40f, 13.48f, 0xff484d50),
+	BOX(-2.32f, -2.02f, -1.48f, 1.30f, 49.8f, 51.8f, 0xff454b4f),
+	BOX(-2.36f, -1.98f, -1.42f, 1.34f, 49.7f, 49.9f, 0xff6a7072),
+	BOX(-2.36f, -1.98f, -1.42f, 1.34f, 51.7f, 51.9f, 0xff6a7072),
+	BOX(-2.37f, -2.30f, -0.15f, 0.05f, 50.55f, 51.05f, 0xffaab1b0),
+	BOX(0.95f, 1.35f, -0.26f, -0.18f, 48.05f, 48.40f, 0xffa0a5a2),
+	BOX(1.12f, 1.18f, -0.18f, -0.10f, 48.15f, 48.30f, 0xffbec4be),
 };
 
 static Vertex __attribute__((aligned(16))) armory_weapon_verts[] = {
@@ -565,6 +585,25 @@ typedef struct {
 	int alive;
 	int attack_cooldown;
 } Enemy;
+
+typedef struct {
+	float min_x, max_x, min_z, max_z;
+} Obstacle;
+
+static const Obstacle furniture_obstacles[] = {
+	{-2.24f, -0.71f, 50.16f, 53.04f},
+	{0.50f, 1.90f, 49.96f, 52.34f},
+	{-2.40f, -1.92f, 47.88f, 48.22f},
+	{-2.40f, -1.94f, 49.65f, 51.95f},
+	{0.94f, 1.42f, 47.96f, 48.54f},
+	{-4.05f, -0.75f, 30.95f, 32.25f},
+	{-4.05f, -0.75f, 26.95f, 28.25f},
+	{-4.08f, 4.08f, 17.15f, 19.05f},
+	{-4.72f, -4.00f, -66.72f, -65.68f},
+	{4.00f, 4.72f, -66.72f, -65.68f},
+	{-4.72f, -4.00f, -91.72f, -90.68f},
+	{4.00f, 4.72f, -91.72f, -90.68f},
+};
 
 typedef struct {
 	float px, pz, yaw;
@@ -1301,7 +1340,7 @@ static void prepare_overlay_geometry(void)
 	overlay_sprite(13.0f, 25.0f, 113.0f, 33.0f, 0xff303030);
 	overlay_text("HP", 14, 12, 1, 0xffffffff);
 	overlay_text("AMMO", 14, 39, 1, 0xffffffff);
-	overlay_text("BUNKER D6 v5.0", 360, 12, 1, 0xffd0d0d0);
+	overlay_text("BUNKER D6 v5.5", 360, 12, 1, 0xffd0d0d0);
 	overlay_text("DOWN: RELOAD", 360, 24, 1, 0xffd0d0d0);
 	overlay_text("LTRIGGER: CYCLE", 354, 36, 1, 0xffd0d0d0);
 	overlay_sprite(0.0f, 211.0f, 480.0f, 272.0f, 0xb0000000);
@@ -1454,7 +1493,7 @@ static void prepare_overlay_geometry(void)
 	overlay_build_capacity = sizeof(overlay_menu_version) /
 		sizeof(overlay_menu_version[0]);
 	overlay_menu_version_count = 0;
-	overlay_text("BUNKER D6 v5.0", 344, 230, 1, 0xffd0d0d0);
+	overlay_text("BUNKER D6 v5.5", 344, 230, 1, 0xffd0d0d0);
 	overlay_build_target = overlay_menu_hint;
 	overlay_build_count = &overlay_menu_hint_count;
 	overlay_build_capacity = sizeof(overlay_menu_hint) /
@@ -1956,15 +1995,40 @@ static int crosses_wall(float old_z, float new_z, float wall_z,
 	return crossed && (x < opening_min_x || x > opening_max_x);
 }
 
-static int collides_with_intro_partition(float old_z, float new_x, float new_z,
-	int room_door_opened, int range_door_opened)
+static int crosses_x_wall(float old_x, float new_x, float wall_x,
+	float opening_min_z, float opening_max_z, float z)
 {
+	int crossed = (old_x <= wall_x && new_x > wall_x) ||
+		(old_x >= wall_x && new_x < wall_x);
+	return crossed && (z < opening_min_z || z > opening_max_z);
+}
+
+static int collides_with_intro_partition(float old_x, float old_z,
+	float new_x, float new_z, int room_door_opened, int range_door_opened)
+{
+	const float player_radius = 0.24f;
+	size_t obstacle;
+
+	for (obstacle = 0; obstacle < sizeof(furniture_obstacles) /
+		sizeof(furniture_obstacles[0]); ++obstacle) {
+		const Obstacle *box = &furniture_obstacles[obstacle];
+		if (new_x + player_radius > box->min_x &&
+			new_x - player_radius < box->max_x &&
+			new_z + player_radius > box->min_z &&
+			new_z - player_radius < box->max_z) {
+			return 1;
+		}
+	}
 	if (!room_door_opened &&
 		crosses_wall(old_z, new_z, ROOM_DOOR_Z, -2.5f, 2.5f, new_x)) {
 		return 1;
 	}
-	if (crosses_wall(old_z, new_z, 36.0f, -2.3f, -0.7f, new_x) ||
-		crosses_wall(old_z, new_z, 24.0f, -1.05f, 1.05f, new_x)) {
+	if (crosses_wall(old_z, new_z, 36.0f, -2.26f, -0.74f, new_x) ||
+		crosses_wall(old_z, new_z, 30.0f, 3.24f, 4.26f, new_x) ||
+		crosses_wall(old_z, new_z, 24.0f, 3.04f, 3.86f, new_x)) {
+		return 1;
+	}
+	if (crosses_x_wall(old_x, new_x, -2.5f, 34.89f, 35.11f, new_z)) {
 		return 1;
 	}
 	if (!range_door_opened &&
@@ -3101,18 +3165,25 @@ int main(void)
 		ay = (pad.Ly - 128) * 0.0078125f;
 		is_moving = fabsf(ax) > 0.2f || fabsf(ay) > 0.2f;
 		{
+			float old_x = px;
 			float old_z = pz;
+			float new_x = px;
+			float new_z = pz;
 			if (fabsf(ay) > 0.2f) {
-				px -= sinf(yaw) * (-ay) * 0.12f;
-				pz -= cosf(yaw) * (-ay) * 0.12f;
+				new_x -= sinf(yaw) * (-ay) * 0.12f;
+				new_z -= cosf(yaw) * (-ay) * 0.12f;
 			}
 			if (fabsf(ax) > 0.2f) {
-				px += cosf(yaw) * ax * 0.08f;
-				pz -= sinf(yaw) * ax * 0.08f;
+				new_x += cosf(yaw) * ax * 0.08f;
+				new_z -= sinf(yaw) * ax * 0.08f;
 			}
-			if (collides_with_intro_partition(old_z, px, pz,
+			if (!collides_with_intro_partition(old_x, old_z, new_x, old_z,
 				room_door_opened, range_door_opened)) {
-				pz = old_z;
+				px = new_x;
+			}
+			if (!collides_with_intro_partition(px, old_z, px, new_z,
+				room_door_opened, range_door_opened)) {
+				pz = new_z;
 			}
 		}
 
@@ -3121,11 +3192,17 @@ int main(void)
 			if (pz > 42.0f) {
 				x_min = -2.1f;
 				x_max = 2.1f;
-			} else if (pz > 36.0f) {
+			} else if (pz > 35.2f) {
 				x_min = -4.1f;
 				x_max = 2.1f;
-			} else if (pz > 24.0f) {
+			} else if (pz > 33.0f) {
 				x_min = -4.1f;
+				x_max = -2.7f;
+			} else if (pz > 30.0f) {
+				x_min = -4.1f;
+				x_max = 4.1f;
+			} else if (pz > 24.0f) {
+				x_min = 3.2f;
 				x_max = 4.1f;
 			} else if (pz > 13.8f) {
 				x_min = -4.8f;
