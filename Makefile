@@ -1,8 +1,8 @@
 TARGET = metro_d6
-OBJS = main.o
+OBJS = main.o weapon.o companion.o
 
 CFLAGS = -O2 -G0 -Wall
-LIBS = -lpspgum -lpspgu -lm
+LIBS = -lpspaudio -lpspgum -lpspgu -lm
 
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = METRO D6
