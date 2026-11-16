@@ -31,6 +31,7 @@ typedef struct {
 #define HALL_COLUMN_VERTEX_COUNT (4 * 36)
 #define INTRO_SECTION_COUNT 14
 #define INTRO_SECTION_VERTEX_COUNT 24
+#define INTRO_PARTITION_COUNT 6
 #define BARREL_SEGMENTS 12
 #define BARREL_VERTEX_COUNT (BARREL_SEGMENTS * 5 * 6)
 #define MUTANT_VERTEX_CAPACITY 8192
@@ -47,7 +48,6 @@ typedef struct {
 #define EXIT_GATE_WORLD_Z -108.0f
 #define ROOM_DOOR_Z 45.0f
 #define RANGE_GATE_Z 12.0f
-#define ARMORY_TABLE_Z 18.0f
 
 static unsigned int __attribute__((aligned(16)))
 	texture_staging[TEXTURE_COUNT][TEXTURE_SIZE * TEXTURE_SIZE];
@@ -216,8 +216,8 @@ static Vertex __attribute__((aligned(16))) intro_structure_verts[] = {
 	INTRO_SECTION(51.0f, 48.0f, 2.5f),
 	INTRO_SECTION(48.0f, 45.0f, 2.5f),
 	INTRO_SECTION(45.0f, 42.0f, 2.5f),
-	INTRO_SECTION(42.0f, 39.0f, 2.5f),
-	INTRO_SECTION(39.0f, 36.0f, 2.5f),
+	INTRO_SECTION(42.0f, 39.0f, 4.5f),
+	INTRO_SECTION(39.0f, 36.0f, 4.5f),
 	INTRO_SECTION(36.0f, 33.0f, 4.5f),
 	INTRO_SECTION(33.0f, 30.0f, 4.5f),
 	INTRO_SECTION(30.0f, 27.0f, 4.5f),
@@ -226,6 +226,15 @@ static Vertex __attribute__((aligned(16))) intro_structure_verts[] = {
 	INTRO_SECTION(21.0f, 18.0f, 5.0f),
 	INTRO_SECTION(18.0f, 15.0f, 5.0f),
 	INTRO_SECTION(15.0f, 12.0f, 5.0f),
+};
+
+static Vertex __attribute__((aligned(16))) intro_partition_verts[] = {
+	BOX(-4.5f, -2.5f, -1.5f, 2.4f, 35.9f, 36.1f, 0xff686868),
+	BOX(-0.5f, 4.5f, -1.5f, 2.4f, 35.9f, 36.1f, 0xff686868),
+	BOX(-2.5f, -0.5f, 1.55f, 2.4f, 35.9f, 36.1f, 0xff777777),
+	BOX(-5.0f, -1.25f, -1.5f, 2.4f, 23.9f, 24.1f, 0xff686868),
+	BOX(1.25f, 5.0f, -1.5f, 2.4f, 23.9f, 24.1f, 0xff686868),
+	BOX(-1.25f, 1.25f, 1.55f, 2.4f, 23.9f, 24.1f, 0xff777777),
 };
 
 static Vertex __attribute__((aligned(16))) intro_wood_verts[] = {
@@ -243,11 +252,11 @@ static Vertex __attribute__((aligned(16))) intro_wood_verts[] = {
 	BOX(0.8f, 4.0f, -0.75f, -0.58f, 27.0f, 28.2f, 0xff76502e),
 	BOX(1.0f, 1.25f, -1.50f, -0.72f, 27.1f, 27.35f, 0xff67452b),
 	BOX(3.55f, 3.8f, -1.50f, -0.72f, 27.1f, 27.35f, 0xff67452b),
-	BOX(-3.5f, 3.5f, -0.68f, -0.50f, 17.2f, 19.0f, 0xff79512f),
-	BOX(-3.35f, -3.10f, -1.50f, -0.68f, 17.4f, 17.7f, 0xff634127),
-	BOX(3.10f, 3.35f, -1.50f, -0.68f, 17.4f, 17.7f, 0xff634127),
-	BOX(-3.35f, -3.10f, -1.50f, -0.68f, 18.5f, 18.8f, 0xff634127),
-	BOX(3.10f, 3.35f, -1.50f, -0.68f, 18.5f, 18.8f, 0xff634127),
+	BOX(-4.0f, 4.0f, -0.68f, -0.50f, 17.2f, 19.0f, 0xff79512f),
+	BOX(-3.85f, -3.60f, -1.50f, -0.68f, 17.4f, 17.7f, 0xff634127),
+	BOX(3.60f, 3.85f, -1.50f, -0.68f, 17.4f, 17.7f, 0xff634127),
+	BOX(-3.85f, -3.60f, -1.50f, -0.68f, 18.5f, 18.8f, 0xff634127),
+	BOX(3.60f, 3.85f, -1.50f, -0.68f, 18.5f, 18.8f, 0xff634127),
 };
 
 static Vertex __attribute__((aligned(16))) intro_metal_verts[] = {
@@ -277,6 +286,29 @@ static Vertex __attribute__((aligned(16))) intro_metal_verts[] = {
 	BOX(0.75f, 0.85f, -1.50f, 0.08f, 13.40f, 13.48f, 0xff484d50),
 	BOX(2.75f, 3.75f, 0.05f, 1.20f, 13.35f, 13.52f, 0xff62676a),
 	BOX(2.95f, 3.05f, -1.50f, 0.08f, 13.40f, 13.48f, 0xff484d50),
+};
+
+static Vertex __attribute__((aligned(16))) armory_weapon_verts[] = {
+	/* Pistol */
+	BOX(-3.85f, -3.48f, -0.44f, -0.34f, 17.45f, 17.58f, 0xff393e42),
+	BOX(-3.76f, -3.60f, -0.34f, -0.23f, 17.48f, 17.55f, 0xff62676a),
+	BOX(-3.72f, -3.62f, -0.57f, -0.42f, 17.49f, 17.56f, 0xff292d30),
+	/* Assault rifle */
+	BOX(-2.65f, -1.45f, -0.40f, -0.29f, 17.43f, 17.57f, 0xff373c40),
+	BOX(-2.32f, -1.70f, -0.29f, -0.18f, 17.45f, 17.55f, 0xff555a5d),
+	BOX(-2.59f, -2.47f, -0.53f, -0.36f, 17.46f, 17.56f, 0xff80512e),
+	BOX(-2.08f, -1.98f, -0.56f, -0.39f, 17.46f, 17.56f, 0xff303438),
+	/* Shotgun */
+	BOX(-0.85f, 0.10f, -0.40f, -0.28f, 17.43f, 17.57f, 0xff42474b),
+	BOX(-0.64f, -0.42f, -0.29f, -0.20f, 17.45f, 17.55f, 0xff62676a),
+	BOX(-0.82f, -0.69f, -0.53f, -0.38f, 17.46f, 17.56f, 0xff80512e),
+	BOX(-0.26f, -0.16f, -0.55f, -0.39f, 17.46f, 17.56f, 0xff34383b),
+	/* Sniper rifle and scope */
+	BOX(0.65f, 2.95f, -0.39f, -0.28f, 17.43f, 17.57f, 0xff34393d),
+	BOX(0.92f, 1.42f, -0.28f, -0.17f, 17.45f, 17.55f, 0xff555a5d),
+	BOX(0.75f, 1.02f, -0.55f, -0.38f, 17.46f, 17.56f, 0xff80512e),
+	BOX(1.20f, 1.27f, -0.17f, -0.08f, 17.45f, 17.55f, 0xff25292d),
+	BOX(1.15f, 1.36f, -0.08f, 0.02f, 17.44f, 17.56f, 0xff454a4e),
 };
 
 static Vertex __attribute__((aligned(16))) intro_lamp_verts[] = {
@@ -343,7 +375,7 @@ static Vertex __attribute__((aligned(16))) menu_metal_verts[] = {
 };
 
 static Vertex __attribute__((aligned(16))) menu_red_lamp_verts[] = {
-	BOX(1.18f, 1.48f, 0.15f, 0.23f, -3.18f, -2.82f, 0xff702010),
+	BOX(1.18f, 1.48f, 0.15f, 0.23f, -3.18f, -2.82f, 0xffffa030),
 };
 
 static TexturedVertex __attribute__((aligned(16))) textured_menu_structure[
@@ -363,6 +395,8 @@ static TexturedVertex __attribute__((aligned(16))) textured_intro_wood_verts[
 	sizeof(intro_wood_verts) / sizeof(Vertex)];
 static TexturedVertex __attribute__((aligned(16))) textured_intro_metal_verts[
 	sizeof(intro_metal_verts) / sizeof(Vertex)];
+static TexturedVertex __attribute__((aligned(16))) textured_armory_weapon_verts[
+	sizeof(armory_weapon_verts) / sizeof(Vertex)];
 static TexturedVertex __attribute__((aligned(16))) textured_intro_lamp_verts[
 	sizeof(intro_lamp_verts) / sizeof(Vertex)];
 static Vertex __attribute__((aligned(16))) barrel_raw_verts[BARREL_VERTEX_COUNT];
@@ -425,6 +459,7 @@ static Vertex __attribute__((aligned(16))) overlay_intro_message_verts[3][2048];
 static Vertex __attribute__((aligned(16))) overlay_weapon_name_verts[WEAPON_COUNT][1024];
 static Vertex __attribute__((aligned(16))) overlay_watch_verts[512];
 static Vertex __attribute__((aligned(16))) overlay_crosshair_verts[64];
+static Vertex __attribute__((aligned(16))) overlay_weapon_pickup_hint[2048];
 static Vertex __attribute__((aligned(16))) overlay_hp_verts[200];
 static Vertex __attribute__((aligned(16))) overlay_ammo_full_verts[60];
 static Vertex __attribute__((aligned(16))) overlay_ammo_empty_verts[60];
@@ -453,6 +488,7 @@ static unsigned int overlay_intro_message_counts[3];
 static unsigned int overlay_weapon_name_counts[WEAPON_COUNT];
 static unsigned int overlay_watch_count;
 static unsigned int overlay_crosshair_count;
+static unsigned int overlay_weapon_pickup_hint_count;
 static unsigned int overlay_menu_title_count;
 static unsigned int overlay_chapter_heading_count;
 static unsigned int overlay_menu_version_count;
@@ -536,7 +572,8 @@ typedef struct {
 	float room_door_open, range_door_open, gate_open, exit_gate_open;
 	int flashlight, reload_frames, flash_frames, weapon_type, arsenal_acquired;
 	int hp, ammo, ammo_capacity, chapter1_complete, khan_dialogue_line;
-	int chapter2_complete, room_door_opened, range_door_opened, intro_message;
+	int chapter2_complete, room_door_opened, range_door_opened;
+	int intro_message, armory_near;
 	int target_hits[4];
 } PauseRenderState;
 
@@ -1036,9 +1073,12 @@ static int build_tunnel_mesh(void)
 	tunnel_track_grid_count = 0;
 	tunnel_concrete_grid_count = 0;
 	if (TUNNEL_VERTEX_COUNT != TUNNEL_EXPECTED_VERTEX_COUNT ||
-		TUNNEL_VERTEX_COUNT + HALL_VERTEX_COUNT + INTRO_VERTEX_COUNT >
+	TUNNEL_VERTEX_COUNT + HALL_VERTEX_COUNT + INTRO_VERTEX_COUNT +
+		sizeof(intro_partition_verts) / sizeof(Vertex) >
 			MAX_TUNNEL_VERTS ||
-		INTRO_VERTEX_COUNT != INTRO_SECTION_COUNT * INTRO_SECTION_VERTEX_COUNT) {
+	INTRO_VERTEX_COUNT != INTRO_SECTION_COUNT * INTRO_SECTION_VERTEX_COUNT ||
+	sizeof(intro_partition_verts) / sizeof(Vertex) !=
+		INTRO_PARTITION_COUNT * 36) {
 		return 0;
 	}
 	for (i = 0; i < TUNNEL_VERTEX_COUNT; i += 3) {
@@ -1060,6 +1100,13 @@ static int build_tunnel_mesh(void)
 		Vertex triangle[3] = {
 			intro_structure_verts[i], intro_structure_verts[i + 1],
 			intro_structure_verts[i + 2]
+		};
+		if (!append_mesh_triangle(triangle, TEXTURE_CONCRETE)) return 0;
+	}
+	for (i = 0; i < sizeof(intro_partition_verts) / sizeof(Vertex); i += 3) {
+		Vertex triangle[3] = {
+			intro_partition_verts[i], intro_partition_verts[i + 1],
+			intro_partition_verts[i + 2]
 		};
 		if (!append_mesh_triangle(triangle, TEXTURE_CONCRETE)) return 0;
 	}
@@ -1175,6 +1222,8 @@ static int prepare_textured_geometry(void)
 		sizeof(intro_wood_verts) / sizeof(Vertex), 22.0f);
 	prepare_surface_geometry(intro_metal_verts, textured_intro_metal_verts,
 		sizeof(intro_metal_verts) / sizeof(Vertex), 24.0f);
+	prepare_surface_geometry(armory_weapon_verts, textured_armory_weapon_verts,
+		sizeof(armory_weapon_verts) / sizeof(Vertex), 26.0f);
 	prepare_surface_geometry(intro_lamp_verts, textured_intro_lamp_verts,
 		sizeof(intro_lamp_verts) / sizeof(Vertex), 20.0f);
 	prepare_surface_geometry(menu_structure_verts, textured_menu_structure,
@@ -1252,7 +1301,7 @@ static void prepare_overlay_geometry(void)
 	overlay_sprite(13.0f, 25.0f, 113.0f, 33.0f, 0xff303030);
 	overlay_text("HP", 14, 12, 1, 0xffffffff);
 	overlay_text("AMMO", 14, 39, 1, 0xffffffff);
-	overlay_text("BUNKER D6 v4.5", 360, 12, 1, 0xffd0d0d0);
+	overlay_text("BUNKER D6 v5.0", 360, 12, 1, 0xffd0d0d0);
 	overlay_text("DOWN: RELOAD", 360, 24, 1, 0xffd0d0d0);
 	overlay_text("LTRIGGER: CYCLE", 354, 36, 1, 0xffd0d0d0);
 	overlay_sprite(0.0f, 211.0f, 480.0f, 272.0f, 0xb0000000);
@@ -1321,7 +1370,7 @@ static void prepare_overlay_geometry(void)
 
 	{
 		static const char *weapon_names[WEAPON_COUNT] = {
-			"PISTOL", "ASSAULT RIFLE", "SHOTGUN", "SNIPER RIFLE"
+			"1 PISTOL", "2 ASSAULT RIFLE", "3 SHOTGUN", "4 SNIPER RIFLE"
 		};
 		for (i = 0; i < WEAPON_COUNT; ++i) {
 			overlay_build_target = overlay_weapon_name_verts[i];
@@ -1352,6 +1401,14 @@ static void prepare_overlay_geometry(void)
 	overlay_sprite(236.0f, 132.0f, 244.0f, 140.0f, 0xffffffff);
 	overlay_sprite(239.0f, 126.0f, 241.0f, 146.0f, 0xffffffff);
 	overlay_sprite(230.0f, 135.0f, 250.0f, 137.0f, 0xffffffff);
+
+	overlay_build_target = overlay_weapon_pickup_hint;
+	overlay_build_count = &overlay_weapon_pickup_hint_count;
+	overlay_build_capacity = sizeof(overlay_weapon_pickup_hint) /
+		sizeof(overlay_weapon_pickup_hint[0]);
+	overlay_weapon_pickup_hint_count = 0;
+	overlay_text("PRESS TRIANGLE TO EQUIP ALL WEAPONS",
+		74, 190, 1, 0xffffd080);
 
 	overlay_build_target = overlay_hp_verts;
 	overlay_build_count = &temporary_count;
@@ -1397,7 +1454,7 @@ static void prepare_overlay_geometry(void)
 	overlay_build_capacity = sizeof(overlay_menu_version) /
 		sizeof(overlay_menu_version[0]);
 	overlay_menu_version_count = 0;
-	overlay_text("BUNKER D6 v4.5", 344, 230, 1, 0xffd0d0d0);
+	overlay_text("BUNKER D6 v5.0", 344, 230, 1, 0xffd0d0d0);
 	overlay_build_target = overlay_menu_hint;
 	overlay_build_count = &overlay_menu_hint_count;
 	overlay_build_capacity = sizeof(overlay_menu_hint) /
@@ -1504,7 +1561,7 @@ static void prepare_overlay_geometry(void)
 
 static void draw_overlay(int hp, int ammo, int ammo_capacity, int chapter1_complete,
 	int khan_dialogue_line, int chapter2_complete, int range_gate_open,
-	int intro_message, int equipped, int weapon_type)
+	int intro_message, int equipped, int weapon_type, int armory_near)
 {
 	sceGuDisable(GU_TEXTURE_2D);
 	sceGuDisable(GU_DEPTH_TEST);
@@ -1520,6 +1577,12 @@ static void draw_overlay(int hp, int ammo, int ammo_capacity, int chapter1_compl
 	sceGuDrawArray(GU_SPRITES,
 		GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D,
 		overlay_static_count, 0, overlay_verts);
+	if (armory_near && !equipped) {
+		sceGuDrawArray(GU_SPRITES,
+			GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D,
+			overlay_weapon_pickup_hint_count, 0,
+			overlay_weapon_pickup_hint);
+	}
 	if (equipped) {
 		sceGuDrawArray(GU_SPRITES,
 			GU_COLOR_8888 | GU_VERTEX_32BITF | GU_TRANSFORM_2D,
@@ -1786,6 +1849,29 @@ static unsigned int light_vertex_color(Vertex source, float px, float py, float 
 	return lit_color(source.color, red, green, blue);
 }
 
+static void warm_menu_geometry(TexturedVertex *vertices, size_t count)
+{
+	size_t i;
+	for (i = 0; i < count; ++i) {
+		float dx = vertices[i].x - 1.33f;
+		float dy = vertices[i].y - 0.05f;
+		float dz = vertices[i].z + 3.0f;
+		float distance = sqrtf(dx * dx + dy * dy + dz * dz);
+		float glow = 1.0f - smoothstep(0.35f, 4.5f, distance);
+		unsigned int color = vertices[i].color;
+		float red = (float)(color & 0xffu) * (0.50f + glow * 0.30f) +
+			60.0f * glow;
+		float green = (float)((color >> 8) & 0xffu) *
+			(0.50f + glow * 0.20f) + 24.0f * glow;
+		float blue = (float)((color >> 16) & 0xffu) *
+			(0.52f - glow * 0.16f);
+		vertices[i].color = (color & 0xff000000u) |
+			(multiply_channel((unsigned int)red, 1.0f)) |
+			(multiply_channel((unsigned int)green, 1.0f) << 8) |
+			(multiply_channel((unsigned int)blue, 1.0f) << 16);
+	}
+}
+
 static void update_lighting(float px, float pz, float yaw, int flashlight, float gate_open)
 {
 	size_t i;
@@ -1842,10 +1928,50 @@ static void draw_tunnel(void)
 		tunnel_concrete_grid_count, 0, tunnel_concrete_grid);
 }
 
+static int near_armory_table(float x, float z)
+{
+	float nearest_x = x;
+	float nearest_z = z;
+	float dx, dz;
+	if (nearest_x < -4.0f) nearest_x = -4.0f;
+	if (nearest_x > 4.0f) nearest_x = 4.0f;
+	if (nearest_z < 17.2f) nearest_z = 17.2f;
+	if (nearest_z > 19.0f) nearest_z = 19.0f;
+	dx = x - nearest_x;
+	dz = z - nearest_z;
+	return dx * dx + dz * dz < 12.25f;
+}
+
 static int weapon_capacity(int weapon_type)
 {
 	static const int capacities[WEAPON_COUNT] = {8, 30, 6, 5};
 	return capacities[weapon_type];
+}
+
+static int crosses_wall(float old_z, float new_z, float wall_z,
+	float opening_min_x, float opening_max_x, float x)
+{
+	int crossed = (old_z >= wall_z && new_z < wall_z) ||
+		(old_z <= wall_z && new_z > wall_z);
+	return crossed && (x < opening_min_x || x > opening_max_x);
+}
+
+static int collides_with_intro_partition(float old_z, float new_x, float new_z,
+	int room_door_opened, int range_door_opened)
+{
+	if (!room_door_opened &&
+		crosses_wall(old_z, new_z, ROOM_DOOR_Z, -2.5f, 2.5f, new_x)) {
+		return 1;
+	}
+	if (crosses_wall(old_z, new_z, 36.0f, -2.3f, -0.7f, new_x) ||
+		crosses_wall(old_z, new_z, 24.0f, -1.05f, 1.05f, new_x)) {
+		return 1;
+	}
+	if (!range_door_opened &&
+		crosses_wall(old_z, new_z, RANGE_GATE_Z, -2.5f, 2.5f, new_x)) {
+		return 1;
+	}
+	return 0;
 }
 
 static void shoot_range_targets(float px, float pz, float yaw, int target_hits[4])
@@ -2029,6 +2155,11 @@ static void draw_intro_props(const int target_hits[4])
 	sceGumDrawArray(GU_TRIANGLES, format,
 		sizeof(textured_intro_metal_verts) / sizeof(TexturedVertex),
 		0, textured_intro_metal_verts);
+
+	bind_texture(TEXTURE_WEAPON);
+	sceGumDrawArray(GU_TRIANGLES, format,
+		sizeof(textured_armory_weapon_verts) / sizeof(TexturedVertex),
+		0, textured_armory_weapon_verts);
 
 	sceGuEnable(GU_BLEND);
 	sceGuBlendFunc(GU_ADD, GU_SRC_ALPHA, GU_ONE_MINUS_SRC_ALPHA, 0, 0);
@@ -2430,7 +2561,8 @@ static void draw_paused_game_scene(const PauseRenderState *state,
 	draw_overlay(state->hp, state->ammo, state->ammo_capacity,
 		state->chapter1_complete, state->khan_dialogue_line,
 		state->chapter2_complete, state->range_door_opened,
-		state->intro_message, state->arsenal_acquired, state->weapon_type);
+		state->intro_message, state->arsenal_acquired, state->weapon_type,
+		state->armory_near);
 	draw_menu_overlay(UI_PAUSED, pause_selection, 0);
 
 	sceGuFinish();
@@ -2546,6 +2678,12 @@ int main(void)
 	if (!prepare_textured_geometry()) {
 		return -1;
 	}
+	warm_menu_geometry(textured_menu_structure,
+		sizeof(textured_menu_structure) / sizeof(TexturedVertex));
+	warm_menu_geometry(textured_menu_wood,
+		sizeof(textured_menu_wood) / sizeof(TexturedVertex));
+	warm_menu_geometry(textured_menu_metal,
+		sizeof(textured_menu_metal) / sizeof(TexturedVertex));
 	if (!prepare_blockpost_geometry()) {
 		return -1;
 	}
@@ -2803,6 +2941,10 @@ int main(void)
 				pause_state.room_door_opened = room_door_opened;
 				pause_state.range_door_opened = range_door_opened;
 				pause_state.intro_message = intro_message;
+				{
+					pause_state.armory_near = !arsenal_acquired &&
+						near_armory_table(px, pz);
+				}
 				memcpy(pause_state.target_hits, target_hits,
 					sizeof(pause_state.target_hits));
 				draw_paused_game_scene(&pause_state, enemies, pause_selection);
@@ -2842,9 +2984,9 @@ int main(void)
 					}
 				}
 				if (guard == 2 && !arsenal_acquired &&
-					pz > 14.5f && pz < 21.5f && fabsf(px) < 4.0f) {
+					near_armory_table(px, pz)) {
 					arsenal_acquired = 1;
-					weapon_type = WEAPON_PISTOL;
+					weapon_type = WEAPON_RIFLE;
 					weapon_ammo[WEAPON_PISTOL] = 8;
 					weapon_ammo[WEAPON_RIFLE] = 30;
 					weapon_ammo[WEAPON_SHOTGUN] = 6;
@@ -2958,32 +3100,46 @@ int main(void)
 		ax = (pad.Lx - 128) * 0.0078125f;
 		ay = (pad.Ly - 128) * 0.0078125f;
 		is_moving = fabsf(ax) > 0.2f || fabsf(ay) > 0.2f;
-		if (fabsf(ay) > 0.2f) {
-			px -= sinf(yaw) * (-ay) * 0.12f;
-			pz -= cosf(yaw) * (-ay) * 0.12f;
-		}
-		if (fabsf(ax) > 0.2f) {
-			px += cosf(yaw) * ax * 0.08f;
-			pz -= sinf(yaw) * ax * 0.08f;
+		{
+			float old_z = pz;
+			if (fabsf(ay) > 0.2f) {
+				px -= sinf(yaw) * (-ay) * 0.12f;
+				pz -= cosf(yaw) * (-ay) * 0.12f;
+			}
+			if (fabsf(ax) > 0.2f) {
+				px += cosf(yaw) * ax * 0.08f;
+				pz -= sinf(yaw) * ax * 0.08f;
+			}
+			if (collides_with_intro_partition(old_z, px, pz,
+				room_door_opened, range_door_opened)) {
+				pz = old_z;
+			}
 		}
 
 		{
-			float x_limit;
-			if (pz > 45.0f) {
-				x_limit = 2.1f;
+			float x_min, x_max;
+			if (pz > 42.0f) {
+				x_min = -2.1f;
+				x_max = 2.1f;
 			} else if (pz > 36.0f) {
-				x_limit = 2.1f;
+				x_min = -4.1f;
+				x_max = 2.1f;
 			} else if (pz > 24.0f) {
-				x_limit = 4.1f;
+				x_min = -4.1f;
+				x_max = 4.1f;
 			} else if (pz > 13.8f) {
-				x_limit = 4.8f;
+				x_min = -4.8f;
+				x_max = 4.8f;
 			} else if (!range_door_opened) {
-				x_limit = 2.1f;
+				x_min = -2.1f;
+				x_max = 2.1f;
 			} else {
-				x_limit = pz < -60.0f ? 5.0f : 1.9f;
+				float x_limit = pz < -60.0f ? 5.0f : 1.9f;
+				x_min = -x_limit;
+				x_max = x_limit;
 			}
-			if (px < -x_limit) px = -x_limit;
-			if (px > x_limit) px = x_limit;
+			if (px < x_min) px = x_min;
+			if (px > x_max) px = x_max;
 		}
 		if (pz > 53.0f) pz = 53.0f;
 		{
@@ -3100,7 +3256,8 @@ int main(void)
 		draw_overlay(hp, weapon_type >= 0 ? weapon_ammo[weapon_type] : 0,
 			weapon_type >= 0 ? weapon_capacity(weapon_type) : 0,
 			chapter1_complete, khan_dialogue_line, chapter2_complete,
-			range_door_opened, intro_message, arsenal_acquired, weapon_type);
+			range_door_opened, intro_message, arsenal_acquired, weapon_type,
+			!arsenal_acquired && near_armory_table(px, pz));
 		sceGuFinish();
 		sceGuSync(0, 0);
 
